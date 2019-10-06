@@ -16,7 +16,7 @@ app.use('/api', router);
 
 router.get('/', (request, response) => {
   let jsonArticles = JSON.stringify(articles);
-  response.json("12345");
+  response.json(articles);
 });
 
 app.listen(port, () => console.log(`Listening on port ${port}`));

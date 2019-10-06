@@ -1,5 +1,6 @@
 import React from 'react';
 import { APIRequest } from './../api/fetch.js';
+import ArticlesContainer from './ArticlesContainer.js';
 
 
 
@@ -13,12 +14,9 @@ class MainContainer extends React.Component {
   }
 
   componentDidMount() {
-    // fetch("http://localhost:3001/api/")
-    //
-    // .then(res => res.json())
     APIRequest("articlesApi")
     .then((results) => {
-      this.setState({ stories: JSON.parse(results) })
+      this.setState({ stories: results })
     })
   }
 
@@ -28,7 +26,9 @@ class MainContainer extends React.Component {
   render() {
     return (
       <div>
-      <h1>Main Container</h1>
+      <ArticlesContainer
+        articles={this.state.stories}
+        />
       </div>
     )
   }
