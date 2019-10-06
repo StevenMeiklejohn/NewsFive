@@ -1,6 +1,7 @@
 import React from 'react';
 import { APIRequest } from './../api/fetch.js';
 import ArticlesContainer from './ArticlesContainer.js';
+import RankingContainer from './RankingContainer.js';
 
 
 
@@ -10,9 +11,11 @@ class MainContainer extends React.Component {
 
     this.state = {
       recievedData: [],
-      formattedArticles: []
+      formattedArticles: [],
+      rankingView: false
     }
     this.formatArticleData = this.formatArticleData.bind(this);
+    this.switchToRankingView = this.switchToRankingView.bind(this);
     this.fetchData();
   }
 
@@ -26,38 +29,42 @@ class MainContainer extends React.Component {
   formatArticleData(){
     let allArticles = []
     let singleArticleElements = [];
-    console.log('incoming articles data', this.state.recievedData.articles);
     for(let data of this.state.recievedData.articles){
-      console.log('data', data);
       for(let element of data.body){
-        console.log('element', element);
       if(element.type === "heading"){
-        singleArticleElements.push(<h1>Heading: {element.model.text}</h1>);
+        singleArticleElements.push(<h1 id="heading">Heading: {element.model.text}</h1>);
       } else if (element.type === "paragraph") {
-        singleArticleElements.push(<p> Paragraph: {element.model.text}</p>)
+        singleArticleElements.push(<p id="paragraph"> Paragraph: {element.model.text}</p>)
       } else if (element.type === "image") {
-        console.log('image insert triggered');
-        singleArticleElements.push(<img id="articleImage" src={element.model.url}></img>)
+        singleArticleElements.push(<img id="articleImage" src={element.model.url} alt={"http://web.yonsei.ac.kr/achung/maintenance.jpg"}></img>)
       }
-      console.log('singleArticleElements', singleArticleElements);
     }
-      console.log('singleArticleElements post loop', singleArticleElements);
       allArticles.push(singleArticleElements);
       singleArticleElements = [];
     }
-    console.log('allArticles', allArticles);
     this.setState({formattedArticles: allArticles});
+  }
+
+  switchToRankingView(){
+      this.setState({rankingView: true});
   }
 
 
 
 
   render() {
+   if(this.state.rankingView){
+      return (
+        <RankingContainer
+        articles={this.state.formattedArticles}/>
+      )
+    }
     return (
       <div>
       <ArticlesContainer
-        articles={this.state.formattedArticles}
-        />
+      articles={this.state.formattedArticles}
+      switchToRankingView={this.switchToRankingView}
+      />
       </div>
     )
   }

@@ -14,7 +14,7 @@ class ArticlesContainer extends React.Component {
 
   switchArticle(){
     if(this.state.currentArticle === 4){
-      this.setState((prevState) => ({currentArticle: 0}))
+      this.props.switchToRankingView();
     } else {
       this.setState((prevState) => ({currentArticle: prevState.currentArticle +1}))
     }
