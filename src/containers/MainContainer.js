@@ -12,6 +12,7 @@ class MainContainer extends React.Component {
     this.state = {
       recievedData: [],
       formattedArticles: [],
+      articleHeadlines: [],
       rankingView: false
     }
     this.formatArticleData = this.formatArticleData.bind(this);
@@ -27,12 +28,14 @@ class MainContainer extends React.Component {
   }
 
   formatArticleData(){
-    let allArticles = []
+    let allArticles = [];
     let singleArticleElements = [];
+    let headlines = []
     for(let data of this.state.recievedData.articles){
       for(let element of data.body){
       if(element.type === "heading"){
         singleArticleElements.push(<h1 id="heading">Heading: {element.model.text}</h1>);
+        headlines.push(element.model.text);
       } else if (element.type === "paragraph") {
         singleArticleElements.push(<p id="paragraph"> Paragraph: {element.model.text}</p>)
       } else if (element.type === "image") {
@@ -43,6 +46,7 @@ class MainContainer extends React.Component {
       singleArticleElements = [];
     }
     this.setState({formattedArticles: allArticles});
+    this.setState({articleHeadlines: headlines});
   }
 
   switchToRankingView(){
@@ -56,7 +60,8 @@ class MainContainer extends React.Component {
    if(this.state.rankingView){
       return (
         <RankingContainer
-        articles={this.state.formattedArticles}/>
+        headlines={this.state.articleHeadlines}
+        articles={this.state.recievedData.articles}/>
       )
     }
     return (

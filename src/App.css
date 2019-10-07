@@ -1,5 +1,7 @@
 .App {
   text-align: center;
+  width: 100%;
+  margin: 0 auto;
 }
 
 .App-logo {
@@ -19,4 +21,57 @@
 
 .App-link {
   color: #09d3ac;
+}
+
+
+.drag-container {
+  text-align: center;
+}
+
+.head {
+  display: inline-block;
+  margin: 0;
+  padding: 0;
+  background-color: #CCCCCC;
+  width:100%;
+}
+
+.droppable {
+  position: absolute;
+  width: 40%;
+  height: 30%;
+  right: 5%;
+  top: 10%;
+  background-color: #9E9E9E;
+  border-left: 2px dotted red;
+}
+
+.draggable {
+  width: 85%;
+  height: 15%;
+  background-color: yellow;
+  margin: 10px auto;
+}
+
+.inProgress {
+  position: absolute;
+  width: 40%;
+  height: 30%;
+  left: 5%;
+  top: 10%;
+  background-color: #EEEEEE;
+  border-right: 2px dotted red;
+}
+
+#rankInput{
+  width: 80%;
+  display: inline-block;
+}
+
+#inputBox{
+  float: right;
+}
+
+#rankSubmitButton{
+  display: block;
 }
