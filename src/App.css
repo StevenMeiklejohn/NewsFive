@@ -38,40 +38,41 @@
 
 .droppable {
   position: absolute;
-  width: 40%;
-  height: 30%;
+  width: 45%;
+  height: 60%;
   right: 5%;
-  top: 10%;
+  top: 30%;
   background-color: #9E9E9E;
-  border-left: 2px dotted red;
+
 }
 
 .draggable {
   width: 85%;
   height: 15%;
-  background-color: yellow;
+  background-color: #fcba03;
   margin: 10px auto;
+  text-align: left;
 }
 
 .inProgress {
   position: absolute;
-  width: 40%;
-  height: 30%;
+  width: 45%;
+  height: 60%;
   left: 5%;
-  top: 10%;
+  top: 30%;
   background-color: #EEEEEE;
-  border-right: 2px dotted red;
+
 }
 
-#rankInput{
-  width: 80%;
-  display: inline-block;
+#article{
+  width: 55%;
+  height: 80%;
+  margin: 0 auto;
 }
 
-#inputBox{
-  float: right;
-}
-
-#rankSubmitButton{
-  display: block;
+#logo{
+  height: 10%;
+  width: 10%;
+  margin-top: 2%;
+  margin-left: 2%;
 }

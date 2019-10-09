@@ -34,10 +34,10 @@ class MainContainer extends React.Component {
     for(let data of this.state.recievedData.articles){
       for(let element of data.body){
       if(element.type === "heading"){
-        singleArticleElements.push(<h1 id="heading">Heading: {element.model.text}</h1>);
+        singleArticleElements.push(<h1 id="heading">{element.model.text}</h1>);
         headlines.push(element.model.text);
       } else if (element.type === "paragraph") {
-        singleArticleElements.push(<p id="paragraph"> Paragraph: {element.model.text}</p>)
+        singleArticleElements.push(<p id="paragraph">{element.model.text}</p>)
       } else if (element.type === "image") {
         singleArticleElements.push(<img id="articleImage" src={element.model.url} alt={"http://web.yonsei.ac.kr/achung/maintenance.jpg"}></img>)
       }

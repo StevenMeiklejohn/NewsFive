@@ -7,11 +7,12 @@ class RankingContainer extends Component {
     super(props);
 
     this.state = {
-  	tasks: [
-        {id: "1", headline:"Article 1",type:"inProgress", backgroundColor: "red"},
-        {id: "2", headline:"Article 2", type:"inProgress", backgroundColor:"green"},
-        {id: "3", headline:"Article 3", type:"Done", backgroundColor:"blue"},
-        {id: "4", headline:"Article 4", type:"Done", backgroundColor:"green"}
+  	options: [
+        {id: "1", headline:"1: " + this.props.headlines[0],type:"inProgress"},
+        {id: "2", headline:"2: " + this.props.headlines[1], type:"inProgress"},
+        {id: "3", headline:"3: " + this.props.headlines[2], type:"inProgress"},
+        {id: "4", headline:"4: " + this.props.headlines[3], type:"inProgress"},
+        {id: "5", headline:"5: " + this.props.headlines[4], type:"inProgress"}
   	]
   }
   this.onDragStart = this.onDragStart.bind(this);
@@ -32,7 +33,7 @@ class RankingContainer extends Component {
 	onDrop(event, cat){
 	    let headline = event.dataTransfer.getData("headline");
 
-	    let tasks = this.state.tasks.filter((task) => {
+	    let options = this.state.options.filter((task) => {
 	        if (task.headline == headline) {
 	            task.type = cat;
 	        }
@@ -41,19 +42,19 @@ class RankingContainer extends Component {
 
 	    this.setState({
 	        ...this.state,
-	        tasks
+	        options
 	    });
 	}
 
 
 	render() {
-		var tasks = {
+		var options = {
 	      inProgress: [],
 	      Done: []
 	    }
 
-		this.state.tasks.forEach ((task) => {
-		  tasks[task.type].push(
+		this.state.options.forEach ((task) => {
+		  options[task.type].push(
 		    <div key={task.id}
 		      onDragStart = {(event) => this.onDragStart(event, task.headline)}
 		      draggable
@@ -66,18 +67,19 @@ class RankingContainer extends Component {
 
 	    return (
         <div className="drag-container">
-          <h2 className="head">Starting with your least favourite, drag the articles to the right.</h2>
+          <h2 className="head">Starting with your favourite, please drag</h2>
+          <h2 className="head">the articles to the right in order of preference.</h2>
           <div className="inProgress"
             onDragOver={(event)=>this.onDragOver(event)}
             onDrop={(event)=>{this.onDrop(event, "inProgress")}}>
             <span className="group-header">Unranked</span>
-            {tasks.inProgress}
+            {options.inProgress}
           </div>
           <div className="droppable"
             onDragOver={(event)=>this.onDragOver(event)}
             onDrop={(event)=>this.onDrop(event, "Done")}>
             <span className="group-header">Ranked</span>
-            {tasks.Done}
+            {options.Done}
           </div>
         </div>
 	    );

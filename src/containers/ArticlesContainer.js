@@ -29,7 +29,7 @@ class ArticlesContainer extends React.Component {
   }
 
   return (
-      <div>
+      <div id="article">
         {this.props.articles[this.state.currentArticle]}
         <button className ="nextArticleButton" onClick={this.switchArticle}>Next</button>
       </div>
