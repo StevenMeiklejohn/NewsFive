@@ -7,17 +7,23 @@ class RankingContainer extends Component {
     super(props);
 
     this.state = {
-  	options: [
-        {id: "1", headline:"1: " + this.props.headlines[0],type:"inProgress"},
-        {id: "2", headline:"2: " + this.props.headlines[1], type:"inProgress"},
-        {id: "3", headline:"3: " + this.props.headlines[2], type:"inProgress"},
-        {id: "4", headline:"4: " + this.props.headlines[3], type:"inProgress"},
-        {id: "5", headline:"5: " + this.props.headlines[4], type:"inProgress"}
-  	]
+  	options: []
   }
   this.onDragStart = this.onDragStart.bind(this);
   this.onDragOver = this.onDragOver.bind(this);
   this.onDrop = this.onDrop.bind(this);
+  this.generateOptions = this.generateOptions.bind(this);
+  }
+
+  componentDidMount(){
+    this.generateOptions();
+  }
+
+  generateOptions(){
+    const generatedOptions = this.props.headlines.map((headline, index) => {
+      return {id: index + 1, headline: (index + 1) + ": " + headline, type:"inProgress"};
+    })
+    this.setState({options: generatedOptions});
   }
 
   onDragStart(event, headline){

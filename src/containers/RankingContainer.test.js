@@ -1,6 +1,5 @@
 import React from "react";
 import ReactDOM from "react-dom";
-// import RankingContainer from "./RankingContainer";
 import RankingContainer from "./RankingContainer.js";
 
 let container, headlines;
@@ -34,11 +33,6 @@ it("renders expected header", () => {
   expect(header.textContent).toBe("Starting with your favourite, please drag");
 });
 
-// it("marks all articles as draggable", () => {
-//   ReactDOM.render(<RankingContainer headlines={headlines} />, container);
-//   const actual = container.querySelector()
-// })
-
 it("displays all articles", () => {
   ReactDOM.render(<RankingContainer headlines={headlines} />, container);
   const articleElements = Array.from(
@@ -54,13 +48,3 @@ it("displays all articles", () => {
   ]
   expect(expected).toStrictEqual(actual);
 });
-//
-// it("displays all payments", () => {
-//   ReactDOM.render(<RankingContainer headlines={headlines} />, container);
-//   const paymentTableData = Array.from(
-//     container.querySelectorAll(".headlines-amount")
-//   );
-//   const payments = paymentTableData.map(td => td.textContent);
-//   const expectedPayments = headlines.map(payment => `£${payment.amount}`);
-//   expect(payments).toStrictEqual(expectedPayments);
-// });
